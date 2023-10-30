@@ -12,9 +12,10 @@ This repository serves as the template for the third project in the Deep Catalys
 The problem is the segmentation of healthy organs in medical scans, particularly in the gastro-intestinal (GI) tract, to enhance cancer treatment. This segmentation is vital for optimizing treatment by delivering high doses of radiation to tumors while sparing healthy tissues. Automating this process can reduce treatment time and improve patient care, making it a critical challenge in medical image analysis. 
 
 The primary objectives of solving this problem are:
-    • Automation of Segmentation: Automation will significantly reduce the time and effort required for manual segmentation by radiation oncologists, addressing the challenge of daily variations in the position of the tumor and intestines.
-    • Accelerating Treatment: By automating the segmentation process, radiation treatments can be completed more rapidly. This not only reduces the strain on patients, who must endure shorter treatment durations, but also allows for more effective treatment, increasing the likelihood of positive outcomes.
-    • Generalization: The model should be designed to generalize well across different cases and patient data, accommodating both partially and wholly unseen cases.
+
+*   Automation of Segmentation: Automation will significantly reduce the time and effort required for manual segmentation by radiation oncologists, addressing the challenge of daily variations in the position of the tumor and intestines.
+*   Accelerating Treatment: By automating the segmentation process, radiation treatments can be completed more rapidly. This not only reduces the strain on patients, who must endure shorter treatment durations, but also allows for more effective treatment, increasing the likelihood of positive outcomes.
+*   Generalization: The model should be designed to generalize well across different cases and patient data, accommodating both partially and wholly unseen cases.
 
 By addressing these goals, this project seeks to harness the power of deep learning to streamline the radiation therapy process, ultimately leading to more efficient and effective treatment for patients suffering from GI tract cancers.
 
