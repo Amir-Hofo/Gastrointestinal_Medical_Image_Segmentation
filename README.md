@@ -9,7 +9,7 @@
 This repository serves as the template for the third project in the Deep Catalyst course, focusing on medical image segmentation. Explore and utilize this template to kickstart your own medical image segmentation projects, leverage best practices, and accelerate your journey into the world of precise medical diagnostics through deep learning.
 
 ## 1. Problem Statement
-The problem is the segmentation of healthy organs in medical scans, particularly in the gastro-intestinal (GI) tract, to enhance cancer treatment. This segmentation is vital for optimizing treatment by delivering high doses of radiation to tumors while sparing healthy tissues. Automating this process can reduce treatment time and improve patient care, making it a critical challenge in medical image analysis. 
+Medical Image Segmentation is a computer vision task that involves dividing an medical image into multiple segments. Here, the problem is the segmentation of healthy organs in medical scans, particularly in the gastro-intestinal (GI) tract, to enhance cancer treatment. This segmentation is vital for optimizing treatment by delivering high doses of radiation to tumors while sparing healthy tissues. Automating this process can reduce treatment time and improve patient care, making it a critical challenge in medical image analysis. 
 
 The primary objectives of solving this problem are:
 
