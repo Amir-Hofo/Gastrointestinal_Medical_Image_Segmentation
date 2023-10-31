@@ -3,24 +3,36 @@
     <img src="cover.png" alt="Logo" width="" height="200">
   </a>
 
-<h1 align="center">Medica Image Segmentation</h1>
+<h1 align="center">Medical Image Segmentation</h1>
 </div>
 
-This repository serves as the template for the third project in the Deep Catalyst course, focusing on medical image segmentation. Explore and utilize this template to kickstart your own medical image segmentation projects, leverage best practices, and accelerate your journey into the world of precise medical diagnostics through deep learning.
-
 ## 1. Problem Statement
-Medical Image Segmentation is a computer vision task that involves dividing a medical image into multiple segments. Here, the problem is the segmentation of healthy organs in medical scans, particularly in the gastro-intestinal (GI) tract, to enhance cancer treatment. This segmentation is vital for optimizing treatment by delivering high doses of radiation to tumors while sparing healthy tissues. Automating this process can reduce treatment time and improve patient care, making it a critical challenge in medical image analysis. 
+<div align="justify"> Medical Image Segmentation is a computer vision task that involves dividing a medical image into multiple segments. In this context, the task is the segmentation of healthy organs in medical scans, particularly in the gastrointestinal (GI) tract, to enhance cancer treatment. For patients eligible for radiation therapy, oncologists aim to deliver high doses of radiation using X-ray beams targeted at tumors while avoiding the stomach and intestines. The goal is to effectively segment the stomach and intestines in MRI scans to improve cancer treatment, eliminating the need for the time-consuming and labor-intensive process in which radiation oncologists must manually outline the position of the stomach and intestines, addressing the challenge of daily variations in the tumor and intestines' positions. </div>
 
-The primary objectives of solving this problem are:
+<br/>
+  <div align="center">
+    <a href="https://www.kaggle.com/competitions/uw-madison-gi-tract-image-segmentation">
+      <img src="./images/image.jpg" alt="" width="350" height="350" align="center">
+    </a>
+  </div>
+<br/>
 
-*   Automation of Segmentation: Automation will significantly reduce the time and effort required for manual segmentation by radiation oncologists, addressing the challenge of daily variations in the position of the tumor and intestines.
-*   Accelerating Treatment: By automating the segmentation process, radiation treatments can be completed more rapidly. This not only reduces the strain on patients, who must endure shorter treatment durations, but also allows for more effective treatment, increasing the likelihood of positive outcomes.
-*   Generalization: The model should be designed to generalize well across different cases and patient data, accommodating both partially and wholly unseen cases.
+As shown in the figure, the tumor (pink thick line) is close to the stomach (red thick line). High doses of radiation are directed at the tumor while avoiding the stomach. The dose levels are represented by a range of outlines, with higher doses shown in red and lower doses in green.
 
-By addressing these goals, this project seeks to harness the power of deep learning to streamline the radiation therapy process, ultimately leading to more efficient and effective treatment for patients suffering from GI tract cancers.
+<div align="justify"> The main challenge is to provide better assistance to patients. The issue lies in the tumor size, which often results in radiation X-rays inadvertently coming into contact with healthy organs. The segmentations must be as precise as possible to prevent any unintended harm to the patient. The problem is to develop a deep learning solution that automates the segmentation of the stomach and intestines in MRI scans of cancer patients who undergo 1-5 MRI scans on separate days during their radiation treatment. </div>
 
 ## 2. Related Works
-This section explores existing research and solutions related to medical image segmentation. 
+| Date | Title                                                                                                               | Code                                                                                                                     | Link                                                         |
+|------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| 2015 | U-Net: Convolutional Networks for Biomedical Image Segmentation                                                     | [Code](https://nn.labml.ai/unet/index.html) [Code](https://pytorch.org/hub/mateuszbuda_brain-segmentation-pytorch_unet/) | [Link](https://arxiv.org/pdf/1505.04597v1.pdf)               |
+| 2015 | SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation                                    |                                                                                                                          | [Link](https://arxiv.org/pdf/1511.00561v3.pdf)               |
+| 2016 | V-Net: Fully Convolutional Neural Networks for Volumetric Medical Image Segmentation                                | [Code](https://github.com/mattmacy/vnet.pytorch)                                                                         | [Link](https://arxiv.org/pdf/1606.04797v1.pdf)               |
+| 2018 | UNet++: A Nested U-Net Architecture for Medical Image Segmentation                                                  | [Code](https://github.com/MrGiovanni/UNetPlusPlus)                                                                       | [Link](https://arxiv.org/pdf/1807.10165v1.pdf)               |
+| 2019 | CE-Net: Context Encoder Network for 2D Medical Image Segmentation                                                   | [Code](https://github.com/Guzaiwang/CE-Net)                                                                              | [Link](https://arxiv.org/pdf/1903.02740.pdf)                 |
+| 2022 | Medical Image Segmentation using LeViT-UNet++: A Case Study on GI Tract Data                                        | None                                                                                                                     | [Link](https://arxiv.org/pdf/2209.07515v1.pdf)               |
+| 2023 | 3D TransUNet: Advancing Medical Image Segmentation through Vision Transformers                                      | [Code](https://github.com/Beckschen/3D-TransUNet)                                                                        | [Link](https://arxiv.org/pdf/2310.07781.pdf)                 |
+| 2023 | DA-TransUNet: Integrating Spatial and Channel Dual Attention  with Transformer U-Net for Medical Image Segmentation | [Code](https://github.com/sun-1024/da-transunet)                                                                         | [Link](https://arxiv.org/pdf/2310.12570v1.pdf)               |
+| 2023 | GI Tract Image Segmentation with U-Net and Mask R-CNN                                                               | None                                                                                                                     | [Link](http://cs231n.stanford.edu/reports/2022/pdfs/164.pdf) |
 
 ## 3. The Proposed Method
 Here, the proposed approach for solving the problem is detailed. It covers the algorithms, techniques, or deep learning models to be applied, explaining how they address the problem and why they were chosen.
