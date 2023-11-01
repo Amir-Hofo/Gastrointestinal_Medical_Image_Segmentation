@@ -24,7 +24,7 @@ As shown in the figure, the tumor (pink thick line) is close to the stomach (red
 ## 2. Related Works
 | Date | Title                                                                                                               | Code                                                                                                                     | Link                                                         |
 |------|---------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| 2015 | U-Net: Convolutional Networks for Biomedical Image Segmentation                                                     | [Code](https://nn.labml.ai/unet/index.html) [Code](https://pytorch.org/hub/mateuszbuda_brain-segmentation-pytorch_unet/) | [Link](https://arxiv.org/pdf/1505.04597v1.pdf)               |
+| 2015 | U-Net: Convolutional Networks for Biomedical Image Segmentation                                                     | [Code](https://github.com/milesial/Pytorch-UNet) [Code](https://pytorch.org/hub/mateuszbuda_brain-segmentation-pytorch_unet/) | [Link](https://arxiv.org/pdf/1505.04597v1.pdf)               |
 | 2015 | SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation                                    |                                                                                                                          | [Link](https://arxiv.org/pdf/1511.00561v3.pdf)               |
 | 2016 | V-Net: Fully Convolutional Neural Networks for Volumetric Medical Image Segmentation                                | [Code](https://github.com/mattmacy/vnet.pytorch)                                                                         | [Link](https://arxiv.org/pdf/1606.04797v1.pdf)               |
 | 2018 | UNet++: A Nested U-Net Architecture for Medical Image Segmentation                                                  | [Code](https://github.com/MrGiovanni/UNetPlusPlus)                                                                       | [Link](https://arxiv.org/pdf/1807.10165v1.pdf)               |
@@ -35,7 +35,27 @@ As shown in the figure, the tumor (pink thick line) is close to the stomach (red
 | 2023 | GI Tract Image Segmentation with U-Net and Mask R-CNN                                                               | None                                                                                                                     | [Link](http://cs231n.stanford.edu/reports/2022/pdfs/164.pdf) |
 
 ## 3. The Proposed Method
-Here, the proposed approach for solving the problem is detailed. It covers the algorithms, techniques, or deep learning models to be applied, explaining how they address the problem and why they were chosen.
+<div align="justify"> U-Net is a popular and effective architecture for medical image segmentation tasks, including segmenting different parts of the gastrointestinal tract. It is known for its ability to produce accurate segmentations, especially when dealing with limited training data. The architecture of U-Net gives the model the ability of precise localization, meaning the model output a class label for each pixel, and therefore achieve image segmentation. 
+<br/>
+  <div align="center">
+      <img src="./images/unet-architecture.png" alt="" width="500" height="" align="center">
+    </a>
+  </div>
+<br/>
+
+Figure shows network artitecture in the [original paper](https://arxiv.org/pdf/1505.04597v1.pdf). It consists of the repeated application of two 3x3 convolutions (unpadded convolutions), each followed by a rectified linear unit (RELU) and a 2x2 max pooling operation with stride 2 for downsampling. At each downsampling step we double the number of feature channels. Every step in the expansive path consists of an upsampling of the feature map followed by a 2x2 convolution (“up-convolution”) that halves the number of feature channels, a concatenation with the correspondingly cropped feature map from the contracting path, and two 3x3 convolutions, each followed by a ReLU. The cropping is necessary due to the loss of border pixels in every convolution. At the final layer a 1x1 convolution is used to map each 64-component feature vector to the desired number of classes. In total the network has 23 convolutional layers.</div>
+
+<br/>
+  <div align="center">
+      <img src="./images/train-block-diagram.png" alt="" width="650" height="" align="center">
+    </a>
+  </div>
+<br/>
+
+<div align="justify"> For this project, As shown in the figure, the model takes MRI scans from cancer patients as input images, then uses the U-Net method to obtain predicted segmented areas of patients' MRI scans for "stomach", "large bowel", and "small bowel". By employing the Dice loss function, it compares the predicted binary mask to the true binary mask, which we aim to minimize.
+
+The [evaluation](https://www.kaggle.com/competitions/uw-madison-gi-tract-image-segmentation/overview/evaluation) metrics include the Dice coefficient and the 3D Hausdorff distance. </div>
+
 
 ## 4. Implementation
 This section delves into the practical aspects of the project's implementation.
