@@ -64,6 +64,31 @@ This section delves into the practical aspects of the project's implementation.
 Under this subsection, you'll find information about the dataset used for the medical image segmentation task. It includes details about the dataset source, size, composition, preprocessing, and loading applied to it.
 [Dataset](https://drive.google.com/file/d/1-2ggesSU3agSBKpH-9siKyyCYfbo3Ixm/view?usp=sharing)
 
+<div align="justify">The dataset is MRIs of patients  provided by the UW-Madison Carbone Cancer Center. Specifically, the dataset contains 85 cases with 38496 scan slices of organs represented in 16-bit grayscale PNG format. Each case is represented by multiple sets of scan slices (each set is identified by the day the scan took place). Each scan slices is repeted 3 times, with large_bowel, small_bowel, and stomach classes. The annotations are provided in a csv format with the segmented areas represented as RLE-encoded masks. It would typically need to decode the RLE encoded masks to create pixel-wise binary masks.
+An empty segmentation entry represents no mask presented for the class in the MRI scan slice. The dataset has missing values. 
+
+The most common size across all images in the dataset is 266 × 266, and the rest are of sizes 310×360, 276×276, and 234×234 in frequency descending order. For this project, all images reshape to size 256 × 256. In order to feed the image, and mask into training models, process them as tensors. 
+
+**Files**
+
+*   **train.csv** - IDs and masks for all training objects.
+*   **train.txt** - case IDs for training objects.
+*   **validation.txt** - case IDs for validation objects.
+*   **test.txt** - case IDs for test objects.
+*   **train** - a folder of case/day folders, each containing slice images for a particular case on a given day.
+
+**Columns of  train CSV file**
+
+*   **id** - unique identifier for object
+*   **class** - the predicted class for the object
+*   **segmentation** - RLE-encoded pixels for the identified object
+
+Split the dataset to training, validation, and testing sets based on provided text files. (data folder)
+
+*  **train_data.csv**: IDs, class, segmentation, and image_paths for training objects.
+*  **validation_data.csv**: IDs, class, segmentation, and image_paths for validation objects.
+*   **test_data.csv**: IDs, class, segmentation, and image_paths for test objects.</div>
+
 ### 4.2. Model
 In this subsection, the architecture and specifics of the deep learning model employed for the segmentation task are presented. It describes the model's layers, components, libraries, and any modifications made to it.
 
