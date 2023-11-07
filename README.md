@@ -90,7 +90,12 @@ Split the dataset to training, validation, and testing sets based on provided te
 *   **test_data.csv**: IDs, class, segmentation, and image_paths for test objects.</div>
 
 ### 4.2. Model
-In this subsection, the architecture and specifics of the deep learning model employed for the segmentation task are presented. It describes the model's layers, components, libraries, and any modifications made to it.
+<br/>
+  <div align="center">
+      <img src="./images/diagram.png" alt="" width="500" height="" align="center">
+    </a>
+  </div>
+<br/>
 
 ### 4.3. Configurations
 This part outlines the configuration settings used for training and evaluation. It includes information on hyperparameters, optimization algorithms, loss function, metric, and any other settings that are crucial to the model's performance.
