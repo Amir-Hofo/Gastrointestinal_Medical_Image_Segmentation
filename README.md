@@ -89,13 +89,16 @@ Split the dataset to training, validation, and testing sets based on provided te
 *  **validation_data.csv**: IDs, class, segmentation, and image_paths for validation objects.
 *   **test_data.csv**: IDs, class, segmentation, and image_paths for test objects.</div>
 
-### 4.2. Model
+**Visualization of a batch of images and target masks in the training set**
 <br/>
   <div align="center">
-      <img src="./images/diagram.png" alt="" width="500" height="" align="center">
+      <img src="./images/target_mask.gif" width="500" height="500" alt="" width="500" height="" align="center">
     </a>
   </div>
 <br/>
+
+### 4.2. Model
+In this project, the [SegmentationModelsPytorch](https://segmentation-modelspytorch.readthedocs.io/en/latest/) library is used along with Pytorch to ceate a UNet model.
 
 ### 4.3. Configurations
 This part outlines the configuration settings used for training and evaluation. It includes information on hyperparameters, optimization algorithms, loss function, metric, and any other settings that are crucial to the model's performance.
