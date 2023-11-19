@@ -52,9 +52,9 @@ Figure shows network artitecture in the [original paper](https://arxiv.org/pdf/1
   </div>
 <br/>
 
-<div align="justify"> For this project, As shown in the figure, the model takes MRI scans from cancer patients as input images, then uses the U-Net method to obtain predicted segmented areas of patients' MRI scans for "stomach", "large bowel", and "small bowel". By employing the Dice loss function, it compares the predicted binary mask to the true binary mask, which we aim to minimize.
+<div align="justify"> For this project, As shown in the figure, the model takes MRI scans from cancer patients as input images, then uses the U-Net method to obtain predicted segmented areas of patients' MRI scans for "stomach", "large bowel", and "small bowel". By employing the loss function, it compares the predicted mask to the true mask, which we aim to minimize.
 
-The [evaluation](https://www.kaggle.com/competitions/uw-madison-gi-tract-image-segmentation/overview/evaluation) metrics include the Dice coefficient and the 3D Hausdorff distance. </div>
+The [evaluation](https://torchmetrics.readthedocs.io/en/stable/classification/dice.html) metric is used the Dice. </div>
 
 
 ## 4. Implementation
@@ -100,8 +100,26 @@ Split the dataset to training, validation, and testing sets based on provided te
 ### 4.2. Model
 In this project, the [SegmentationModelsPytorch](https://segmentation-modelspytorch.readthedocs.io/en/latest/) library is used along with Pytorch to ceate a UNet model.
 
+**create segmentation model with pretrained encoder**<br/> 
+in_channels = 1, # model input channels (1 for gray-scale images)<br/> 
+classes = 3, # model output channels <br/> <br/> 
+model = smp.Unet(encoder_name='efficientnet-b1',<br/> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in_channels=1,<br/> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encoder_weights='imagenet',<br/> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classes=3,<br/> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;activation=None)
+                
 ### 4.3. Configurations
-This part outlines the configuration settings used for training and evaluation. It includes information on hyperparameters, optimization algorithms, loss function, metric, and any other settings that are crucial to the model's performance.
+**Loss Function**</br>
+> TverskyLoss = smp.losses.TverskyLoss(mode='multilabel', log_loss=False)</br>
+> BCELoss = smp.losses.SoftBCEWithLogitsLoss()</br>
+> loss_fn = 0.7 * TverskyLoss(y_pred, y_true) + 0.3 * BCELoss(y_pred, y_true)</br>
+
+**Metric**</br>
+> metric = torchmetrics.Dice(average='macro', num_classes=3).to(device)</br>
+
+**Optimizer**</br>
+> optimizer = optim.SGD(model.parameters(), lr=0.8, momentum=0.9, weight_decay=1e-4)
 
 ### 4.4. Train
 Here, you'll find instructions and code related to the training of the segmentation model. This section covers the process of training the model on the provided dataset.
