@@ -92,7 +92,7 @@ Split the dataset to training, validation, and testing sets based on provided te
 **Visualization of a batch of images and target masks in the training set**
 <br/>
   <div align="center">
-      <img src="./images/target_mask.gif" width="500" height="500" alt="" width="500" height="" align="center">
+      <img src="./images/target_mask.gif" width="500" height="400" alt="" width="500" height="" align="center">
     </a>
   </div>
 <br/>
