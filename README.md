@@ -62,7 +62,7 @@ This section delves into the practical aspects of the project's implementation.
 
 ### 4.1. Dataset
 Under this subsection, you'll find information about the dataset used for the medical image segmentation task. It includes details about the dataset source, size, composition, preprocessing, and loading applied to it.
-[Dataset](https://drive.google.com/file/d/1-2ggesSU3agSBKpH-9siKyyCYfbo3Ixm/view?usp=sharing)
+[Dataset](https://www.kaggle.com/competitions/uw-madison-gi-tract-image-segmentation/data)
 
 <div align="justify">The dataset is MRIs of patients  provided by the UW-Madison Carbone Cancer Center. Specifically, the dataset contains 85 cases with 38496 scan slices of organs represented in 16-bit grayscale PNG format. Each case is represented by multiple sets of scan slices (each set is identified by the day the scan took place). Each scan slices is repeted 3 times, with large_bowel, small_bowel, and stomach classes. The annotations are provided in a csv format with the segmented areas represented as RLE-encoded masks. It would typically need to decode the RLE encoded masks to create pixel-wise binary masks.
 An empty segmentation entry represents no mask presented for the class in the MRI scan slice. The dataset has missing values. 
@@ -101,7 +101,7 @@ Split the dataset to training, validation, and testing sets based on provided te
 In this project, the [SegmentationModelsPytorch](https://segmentation-modelspytorch.readthedocs.io/en/latest/) library is used along with Pytorch to ceate a UNet model.
 
 **create segmentation model with pretrained encoder**<br/> 
-in_channels = 1, # model input channels (1 for gray-scale images)<br/> 
+in_channels = 3, # model input channels <br/> 
 classes = 3, # model output channels <br/> <br/> 
 model = smp.Unet(encoder_name='efficientnet-b1',<br/> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in_channels=1,<br/> 
@@ -122,8 +122,15 @@ model = smp.Unet(encoder_name='efficientnet-b1',<br/>
 > optimizer = optim.SGD(model.parameters(), lr=0.8, momentum=0.9, weight_decay=1e-4)
 
 ### 4.4. Train
-Here, you'll find instructions and code related to the training of the segmentation model. This section covers the process of training the model on the provided dataset.
+> * **Finding Hyper-parameters**
+> * Step 1: Calculate the loss for an untrained model using a few batches.
+> * Step 2: Try to train and overfit the model on a small subset of the dataset.
+> * Step 3: Train the model for a limited number of epochs, experimenting with various learning rates.
+> * Step 4: Create a small grid using the weight decay and the best learning rate.
 
+> * **Main Loop**
+> * Define model and optimizer and Set learning rate and weight decay.
+> * train the model for epoches.
 ### 4.5. Evaluate
 In the evaluation section, the methods and metrics used to assess the model's performance are detailed. It explains how the model's segmentation results are quantified and provides insights into the model's effectiveness.
 
