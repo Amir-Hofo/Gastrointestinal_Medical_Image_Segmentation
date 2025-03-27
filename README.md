@@ -119,7 +119,9 @@ model = smp.Unet(encoder_name='efficientnet-b1',<br/>
 > * train the model for epoches.
 ### 4.4. Evaluate
 * Plot learning curves
+  
 ![Untitled_1](https://github.com/user-attachments/assets/27f8186a-49ac-46ea-890e-13e51278e5e8)
 
 * model's segmentation result
+  
 ![Untitled](https://github.com/user-attachments/assets/bd10f5f1-fc8a-4ed0-9a84-b862ff377b62)
