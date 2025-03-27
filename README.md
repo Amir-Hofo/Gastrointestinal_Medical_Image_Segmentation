@@ -109,42 +109,17 @@ model = smp.Unet(encoder_name='efficientnet-b1',<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classes=3,<br/> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;activation=None)
                 
-### 4.3. Configurations
-**Loss Function**</br>
-> TverskyLoss = smp.losses.TverskyLoss(mode='multilabel', log_loss=False)</br>
-> BCELoss = smp.losses.SoftBCEWithLogitsLoss()</br>
-> loss_fn = 0.7 * TverskyLoss(y_pred, y_true) + 0.3 * BCELoss(y_pred, y_true)</br>
-
-**Metric**</br>
-> metric = torchmetrics.Dice(average='macro', num_classes=3).to(device)</br>
-
-**Optimizer**</br>
-> optimizer = optim.SGD(model.parameters(), lr=0.8, momentum=0.9, weight_decay=1e-4)
-
-### 4.4. Train
+### 4.3. Train
 > * **Finding Hyper-parameters**
 > * Step 1: Calculate the loss for an untrained model using a few batches.
-> * Step 2: Try to train and overfit the model on a small subset of the dataset.
-> * Step 3: Train the model for a limited number of epochs, experimenting with various learning rates.
-> * Step 4: Create a small grid using the weight decay and the best learning rate.
+> * Step 2: Train the model for a limited number of epochs, experimenting with various learning rates.
 
 > * **Main Loop**
 > * Define model and optimizer and Set learning rate and weight decay.
 > * train the model for epoches.
-### 4.5. Evaluate
+### 4.4. Evaluate
 * Plot learning curves
-<br/>
-  <div align="center">
-      <img src="./images/learning_curve.png" alt="" width="" height="" align="center">
-    </a>
-  </div>
-<br/>
+![Untitled_1](https://github.com/user-attachments/assets/27f8186a-49ac-46ea-890e-13e51278e5e8)
 
 * model's segmentation result
-<br/>
-  <div align="center">
-      <img src="./images/result.png" alt="" width="800" height="400" align="center">
-    </a>
-  </div>
-<br/>
-
+![Untitled](https://github.com/user-attachments/assets/bd10f5f1-fc8a-4ed0-9a84-b862ff377b62)
